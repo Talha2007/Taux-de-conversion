@@ -1,0 +1,34 @@
+taux_conversion = {
+    "EUR": 1.0,
+    "USD": 1.1,
+    "GBP": 0.85,
+    "JPY": 130.0
+}
+
+def afficher_devises():
+    print("1: EUR (Euro)")
+    print("2: USD (Dollar Américain)")
+    print("3: GBP (Livre Sterling)")
+    print("4: JPY (Yen Japonais)")
+
+print("Choississez une devise de depart: ")
+afficher_devises()
+choix_de_depart = int(input("Entrez le numero de la devise de depart: "))
+devise = ['EUR', 'USD', 'GBP', 'JPY']
+devise_depart = devise[choix_de_depart - 1]
+
+print("Choississez une devise de destination: ")
+afficher_devises()
+choix_de_destination = int(input("Entrez le numero de la devise de destination: "))
+devise_destination = devise[choix_de_destination - 1]
+
+montant = float(input(f"\nEntrez le montant en {devise_depart}: "))
+
+if devise_depart != 'EUR':
+    montant_en_euro = montant / taux_conversion[devise_depart]
+else:
+    montant_en_euro = montant
+
+montant_converti = montant_en_euro * taux_conversion[devise_destination]
+
+print(f"\n{montant} {devise_depart} = {montant_converti:.2f} {devise_destination}")
